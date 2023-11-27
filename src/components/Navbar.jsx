@@ -1,56 +1,38 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { UserAuth } from '../context/AuthContext'
+import React, { useState } from 'react'
+import Button from './Button'
+import Linkbutton from './Linkbutton'
+
 
 const Navbar = () => {
-  const {user, logOut} = UserAuth()
-  // const navigate = useNavigate
+  const [isopen, setIsOpen] = useState(false)
 
-  const handleLogout = async () => {
-   try {
-    await logOut()
-    // navigate('/login')
-   } catch(error) {
-    console.log(error)
-   }
+  const toggleNavBar = () => {
+    setIsOpen(!isopen)
   }
-
 
   return (
     <div className='flex items-center justify-between p-4 z-[100] w-full absolute'>
-        <h1 className='text-red-600 text-4xl font-bold'>
-          Netflix
-        </h1>
-        {user?.email ? 
-        (<div>
-          <Link to='/home'>
-            <button className='text-white pr-4'>Home</button>
-          </Link>
-          <Link to='/'></Link>
-          <Link to='/account'>
-            <button className='text-white pr-4'>Account</button>
-          </Link>
-          <Link to='/'>
-          <button
-            onClick={handleLogout}
-            className='bg-red-600 px-6 py-2 rounded cursor-pointer text-white'
-          >
-            Logout
-          </button>
-          </Link>
-        </div>)
-      :
-      (<div>
-        <Link to='/'>
-          <button className='text-white pr-4'>Sign In</button>
-        </Link>
-        <Link to='/signup'>
-          <button className='bg-red-600 px-6 py-2 rounded cursor-pointer text-white'>
-            Sign Up
-          </button>
-        </Link>
-      </div>)
-        }
+        <div >
+          <div className=''>
+          <div  onClick={toggleNavBar}
+          className='absolute md:hidden text-5xl flex-wrap text-red-700 right-14 top-6 cursor-pointer'>
+          <ion-icon name={isopen ? 'close' : 'menu' }></ion-icon>
+            </div>
+            <div>
+          {isopen && (
+            <div className='md:hidden'>
+              <Linkbutton />
+            </div>
+            )}
+            </div>
+          </div>
+        </div>
+        <div className='absolute right-5 top-6'>
+        <div className='hidden md:flex'>
+        <Button />
+        </div>
+        </div>
+       
     </div>
   )
 }

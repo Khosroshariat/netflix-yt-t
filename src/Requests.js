@@ -1,5 +1,5 @@
 const key = '89a586ee3c45cb9ce71cb98246b386d6'
-// const BASE_URL = 'https://api.themoviedb.org/3'
+
 
 
 const requests = {

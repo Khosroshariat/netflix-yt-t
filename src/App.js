@@ -7,12 +7,14 @@ import Signup from "./pages/Signup"
 import Account from "./pages/Account"
 import ProtectedRoute from "./components/ProtectedRoute";
 import { RecoilRoot } from "recoil";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
     <RecoilRoot>
     <AuthContextProvider>
+      <Header />
       <Navbar />
       <Routes>
         <Route path='/' element={<Login/>}/>
