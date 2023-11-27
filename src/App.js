@@ -6,15 +6,17 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup"
 import Account from "./pages/Account"
 import ProtectedRoute from "./components/ProtectedRoute";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
     <>
+    <RecoilRoot>
     <AuthContextProvider>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/' element={<Login/>}/>
+        <Route path='/home' element={<Home/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path="/account" element={
           <ProtectedRoute>
@@ -23,6 +25,7 @@ function App() {
         } />
       </Routes>
     </AuthContextProvider>
+    </RecoilRoot>
     </>
   );
 }
